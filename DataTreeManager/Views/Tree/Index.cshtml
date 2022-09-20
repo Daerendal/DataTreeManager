@@ -1,0 +1,57 @@
+﻿@model List<TreeOrder>
+
+@{
+    ViewData["Title"] = "Widok Drzewa";
+
+}
+
+@functions{
+
+    void DisplayBranch(int fatherId)
+    {
+        List<TreeOrder> childrenBranches = new List<TreeOrder>();
+
+        childrenBranches = Model.Where(x => x.IdParent.Equals(fatherId)).ToList();
+
+
+        foreach(var item in childrenBranches)
+        {
+            <div class="container">
+                      <button class="btn-outline-dark text-xl-start text-start col-7 m-1">
+
+                                            Id:
+                                            @item.IdTreeOrder
+                                            Name :
+                                            @item.Name
+                                            Level:
+                                            @item.Level
+                                            Parent:
+                                            @item.IdParent
+                           
+                        </button>
+
+                   @{DisplayBranch(@item.IdTreeOrder);}
+
+            </div>  
+        }
+        
+
+    }
+
+
+}
+
+
+
+
+<div class=" container bg-light rounded mt-5">
+
+    <div class="row">
+    
+        @{DisplayBranch(0);}
+
+    </div>
+</div>
+
+
+

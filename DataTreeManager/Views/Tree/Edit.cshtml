@@ -1,0 +1,156 @@
+﻿@using DataTreeManager.ViewModel
+@model BranchVM
+
+
+
+
+
+@functions{
+#pragma warning disable MVC1006
+    async void DisplayBranch(int fatherId)
+    {
+        List<TreeOrder> childrenBranches = new List<TreeOrder>();
+
+        childrenBranches = Model.allBranches.Where(x => x.IdParent.Equals(fatherId)).ToList();
+
+
+        foreach(var item in childrenBranches)
+        {
+            <div class="container bg-dark bg-opacity-50">
+                <div class="container row  bg-light m-1">
+                      <button class="btn-outline-dark btn text-xl-start text-start col-6 m-1">
+
+                                Id:
+                                @item.IdTreeOrder
+                                Name :
+                                @item.Name
+                                Level:  
+                                @item.Level
+                                Parent:
+                                @item.IdParent
+
+                            
+                           
+                      </button>
+                      
+                      <div class="col 6 row ">
+                          <form method="post" class="row col-4 m-1 ">
+                                
+                                        <input asp-for="Name" class="form-control" aria-required="true" />
+                               
+                               
+                                        <button type="submit" asp-action="EditBranch" asp-route-branchId="@item.IdTreeOrder" class="btn btn-warning">Zmien nazwe</button>
+                                
+                                
+                           </form>
+                           <form class="col-4 m-1 row" method="post" >
+  
+                         
+                                    <button type="submit" asp-action="DeleteBranch" asp-route-branchId="@item.IdTreeOrder" class="btn btn-danger">Usun</button>
+
+                            </form>
+                        </div>
+                   @{DisplayBranch(@item.IdTreeOrder);}
+
+                  
+                </div>
+                <br/>
+                 <form class="container bg-light m-1" asp-action="CreateBranch" method="post">
+                        
+                        <div class="form-group">
+                            <label asp-for="Name" class="form-label">Nazwa</label>
+                            <input asp-for="Name" class="form-control" aria-required="true" />
+                        </div>
+
+                         <div class="col text-center">
+                                <button type="submit" class="btn col-6 btn-success">Dodaj nowa galaz</button>
+                            </div>
+
+
+                    </form>
+            </div>
+        }
+
+
+    }
+  
+
+}
+
+
+
+
+//<div class=" container bg-light rounded mt-5">
+
+//    <div class="row">
+    
+//        @{DisplayBranch(0);}
+
+//    </div>
+//</div>
+
+
+
+
+//<ul>
+
+//    @foreach(var item in Model.allBranches)
+//    {
+//        <li>
+//            Id:
+//            @item.IdTreeOrder
+//            Name :
+//            @item.Name
+//            Level:
+//            @item.Level
+//            Parent:
+//            @item.IdParent
+//        </li>
+
+//        <form class="" method="post" >
+  
+//            <div class=" col form-group">
+//                <label asp-for="Name" class="form-label">Nazwa</label>
+//                <input asp-for="Name" class="form-control" aria-required="true" />
+//            </div>
+
+//             <div class="col text-center">
+//                    <button type="submit" asp-action="EditBranch" asp-route-branchId="@item.IdTreeOrder" class="btn col-6 btn-warning">Zmien nazwe</button>
+//            </div>
+
+
+//        </form>
+
+//        <form class="" method="post" >
+  
+//             <div class="col text-center">
+//                    <button type="submit" asp-action="DeleteBranch" asp-route-branchId="@item.IdTreeOrder" class="btn col-6 btn-danger">Usun</button>
+//            </div>
+
+
+//        </form>
+
+//    }
+    
+
+
+//</ul>
+
+//<form class="container bg-light rounded-3 p-4" asp-action="CreateBranch" method="post">
+//    <div class="form-group">
+//        <label asp-for="IdParent" class="form-label">Id Ojca</label>
+//        <input asp-for="IdParent" class="form-control" aria-required="true" />
+//    </div>
+//    <div class="form-group">
+//        <label asp-for="Name" class="form-label">Nazwa</label>
+//        <input asp-for="Name" class="form-control" aria-required="true" />
+//    </div>
+
+//     <div class="col text-center">
+//            <button type="submit" class="btn col-6 btn-success">Dodaj nowa galaz</button>
+//        </div>
+
+
+//</form>
+
+      
