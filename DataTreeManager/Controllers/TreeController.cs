@@ -32,16 +32,18 @@ namespace DataTreeManager.Controllers
             return View(viewModel);
         }
 
-        public IActionResult CreateBranch(BranchVM branch)
+        public IActionResult CreateBranch(BranchVM branch, int branchId)
         {
-            TreeOrder newBranch = new TreeOrder();
-            newBranch.Name = branch.Name;
-            newBranch.IdParent = branch.IdParent;
-            newBranch.Level = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(newBranch.IdParent)).Select(x => x.Level).Single() +1;
-            newBranch.Lineage = "";
-            _db.TreeOrder.Add(newBranch);
-            _db.SaveChanges();
-
+            if (branch.Name != null)
+            {
+                TreeOrder newBranch = new TreeOrder();
+                newBranch.Name = branch.Name;
+                newBranch.IdParent = branchId;
+                newBranch.Level = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(newBranch.IdParent)).Select(x => x.Level).Single() + 1;
+                newBranch.Lineage = "";
+                _db.TreeOrder.Add(newBranch);
+                _db.SaveChanges();
+            }
             return Redirect("Edit");
         }
         public IActionResult DeleteBranch(int branchId)
@@ -54,13 +56,27 @@ namespace DataTreeManager.Controllers
 
             return Redirect("Edit");
         }
-        async public Task<IActionResult> EditBranch(BranchVM branch,int branchId)
+
+        public IActionResult EditBranch(BranchVM branch,int branchId)
         {
             TreeOrder updateBranch = new TreeOrder();
             updateBranch.IdTreeOrder = branchId;
             updateBranch.Name = branch.Name;
             updateBranch.IdParent = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(branchId)).Select(x => x.IdParent).Single();
             updateBranch.Level = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(branchId)).Select(x => x.Level).Single();
+            updateBranch.Lineage = "";
+            _db.TreeOrder.Update(updateBranch);
+
+            _db.SaveChanges();
+            return Redirect("Edit");
+        }
+        public IActionResult ChangeParent(BranchVM branch, int branchId, int IdParent)
+        {
+            TreeOrder updateBranch = new TreeOrder();
+            updateBranch.IdTreeOrder = branchId;
+            updateBranch.Name = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(branchId)).Select(x => x.Name).Single();
+            updateBranch.IdParent = IdParent;
+            updateBranch.Level = _db.TreeOrder.Where(x => x.IdTreeOrder.Equals(IdParent)).Select(x => x.Level).Single() + 1;
             updateBranch.Lineage = "";
             _db.TreeOrder.Update(updateBranch);
 
