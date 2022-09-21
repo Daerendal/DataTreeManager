@@ -6,9 +6,10 @@ Data Tree Managert to aplikacja pozwalająca nam na widok i zarządzanie gałęz
 Po uruchomieniu strony internetowej jesteśmy automatycznie łączeni z bazą danych MySql umieszczonej w chmurze - dlatego mamy natychmiastowy dostęp do zawartej w niej danych.
 
 Strona internetowa składa się z dwóch głównych podstron które mają znaczenie dla użytkownika obsługującego nasze drzewa (oba dostępne z górnego menu) :
-    1. Widoku drzew, w którym mamy dostęp do prostego widoku naszych drzew z wszystkimi gałęziami. Mamy tutaj również opcje sortowania naszych drzew wd. Nazw oraz numeru ID.
+
+1. Widoku drzew, w którym mamy dostęp do prostego widoku naszych drzew z wszystkimi gałęziami. Mamy tutaj również opcje sortowania naszych drzew wd. Nazw oraz numeru ID.
     
-    2. Widoku edycji, gdzie mamy dostęp do możliwości usuwania, dodawania, edytowania i zmiany rodzica gałęzi. Dzieci danego rodzica odznaczone są odstępem od niego oraz odpowiednio ciemniejszym kolorem w linijkach po nich. Dzieci na tym samym poziomie są oznaczone takim samym kolorem.
+2. Widoku edycji, gdzie mamy dostęp do możliwości usuwania, dodawania, edytowania i zmiany rodzica gałęzi. Dzieci danego rodzica odznaczone są odstępem od niego oraz odpowiednio ciemniejszym kolorem w linijkach po nich. Dzieci na tym samym poziomie są oznaczone takim samym kolorem.
     
       a. Usuwanie gałęzi. Usuwamy gałąź poprzez naciśnięcie "Usuń" obok gałęzi którą chcemy usunąć.
       
