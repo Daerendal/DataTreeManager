@@ -117,7 +117,7 @@ namespace DataTreeManager.Controllers
         }
         public IActionResult ChangeParent(BranchVM branch, int branchId, int IdParent)
         {
-            if (_db.TreeOrder.Where(x=>x.IdTreeOrder.Equals(IdParent)).Any())
+            if (_db.TreeOrder.Where(x=>x.IdTreeOrder.Equals(IdParent)).Any() && IdParent != branchId)
             {
                 TreeOrder updateBranch = new TreeOrder();
                 updateBranch.IdTreeOrder = branchId;
