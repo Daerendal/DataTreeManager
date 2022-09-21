@@ -46,6 +46,13 @@
 
 <div class=" container bg-light rounded mt-5">
 
+    <form method="post" class="row col-12" asp-action="Index">
+        <button type="submit" class="bt-dark col-3 btn-outline-dark" asp-route-usedSort="name">Sortowanie Alfabetyczne</button>
+        <button type="submit" class="bt-dark col-3 btn-outline-dark"  asp-route-usedSort="name_desc">Sortowanie odwrotnie Alfabetyczne</button>
+        <button type="submit" class="bt-dark col-3 btn-outline-dark"  asp-route-usedSort="id">Sortowanie id</button>
+        <button type="submit" class="bt-dark col-3 btn-outline-dark"  asp-route-usedSort="id_desc">Sortowanie odwrotnie id</button>
+    </form>
+    <br/>
     <div class="row">
     
         @{DisplayBranch(0);}
