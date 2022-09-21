@@ -1,4 +1,7 @@
 # DataTreeManager
+Data Tree Managert to aplikacja pozwalająca nam na widok i zarządzanie gałęziam z strony internetowej napisanej w ASP.Net MVC. Drzewa którymi zarządzamy umieszczone są w chmurze w bazie danych MySQL. Połączenie z bazą danych następuje dzięki użyćiu paczki NuGet Pommelo.EntityFramework.
+
+
 
 Po uruchomieniu strony internetowej jesteśmy automatycznie łączeni z bazą danych MySql umieszczonej w chmurze - dlatego mamy natychmiastowy dostęp do zawartej w niej danych.
 Strona internetowa składa się z dwóch głównych podstron które mają znaczenie dla użytkownika obsługującego nasze drzewa (oba dostępne z górnego menu) :
